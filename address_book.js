@@ -26,17 +26,32 @@ class Contact {
     }
 }
 
+class AddressBook {
+    constructor() {
+        this.contacts = [];
+    }
+
+    addContact(contact) {
+        this.contacts.push(contact);
+        console.log("Contact added:", contact);
+    }
+}
+
 // Test Cases
+let addressBook = new AddressBook();
+
 try {
     let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
-    console.log("Valid Contact Added:", contact1);
+    addressBook.addContact(contact1);
 } catch (error) {
     console.error(error.message);
 }
 
 try {
-    let contact2 = new Contact("jo", "Doe", "123", "Cty", "St", "1234", "98765", "john.doe@com");
-    console.log("Valid Contact Added:", contact2);
+    let contact2 = new Contact("Jane", "Smith", "456 Elm St", "AnotherCity", "AnotherState", "654321", "8765432109", "jane.smith@example.com");
+    addressBook.addContact(contact2);
 } catch (error) {
     console.error(error.message);
 }
+
+console.log("All Contacts:", addressBook.contacts);
