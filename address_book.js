@@ -35,6 +35,20 @@ class AddressBook {
         this.contacts.push(contact);
         console.log("Contact added:", contact);
     }
+
+    findContact(firstName, lastName) {
+        return this.contacts.find(contact => contact.firstName === firstName && contact.lastName === lastName);
+    }
+
+    editContact(firstName, lastName, newDetails) {
+        let contact = this.findContact(firstName, lastName);
+        if (contact) {
+            Object.assign(contact, newDetails);
+            console.log("Contact updated:", contact);
+        } else {
+            console.log("Contact not found.");
+        }
+    }
 }
 
 // Test Cases
@@ -47,11 +61,7 @@ try {
     console.error(error.message);
 }
 
-try {
-    let contact2 = new Contact("Jane", "Smith", "456 Elm St", "AnotherCity", "AnotherState", "654321", "8765432109", "jane.smith@example.com");
-    addressBook.addContact(contact2);
-} catch (error) {
-    console.error(error.message);
-}
+console.log("Editing Contact...");
+addressBook.editContact("John", "Doe", { city: "NewCity", phoneNumber: "9998887776" });
 
 console.log("All Contacts:", addressBook.contacts);
