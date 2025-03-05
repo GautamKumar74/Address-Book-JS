@@ -32,6 +32,15 @@ class AddressBook {
     }
 
     addContact(contact) {
+        let isDuplicate = this.contacts.some(
+            existingContact => existingContact.firstName === contact.firstName && existingContact.lastName === contact.lastName
+        );
+
+        if (isDuplicate) {
+            console.log("Duplicate contact found. Contact not added.");
+            return;
+        }
+
         this.contacts.push(contact);
         console.log("Contact added:", contact);
     }
@@ -71,8 +80,11 @@ let addressBook = new AddressBook();
 try {
     let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
     let contact2 = new Contact("Jane", "Smith", "456 Elm St", "NewCity", "NewState", "654321", "9123456789", "jane.smith@example.com");
+    let contact3 = new Contact("John", "Doe", "789 Oak St", "AnotherCity", "AnotherState", "789456", "9012345678", "john.doe@another.com"); // Duplicate
+
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
+    addressBook.addContact(contact3); // Should not be added
 } catch (error) {
     console.error(error.message);
 }
