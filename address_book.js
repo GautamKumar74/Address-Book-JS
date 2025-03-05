@@ -45,16 +45,16 @@ class AddressBook {
         console.log("Contact added:", contact);
     }
 
-    viewPersonsByCity(city) {
-        let persons = this.contacts.filter(contact => contact.city === city).map(contact => `${contact.firstName} ${contact.lastName}`);
-        console.log(`Persons in ${city}:`, persons);
-        return persons;
+    countByCity(city) {
+        let count = this.contacts.filter(contact => contact.city === city).length;
+        console.log(`Number of contacts in ${city}: ${count}`);
+        return count;
     }
 
-    viewPersonsByState(state) {
-        let persons = this.contacts.filter(contact => contact.state === state).map(contact => `${contact.firstName} ${contact.lastName}`);
-        console.log(`Persons in ${state}:`, persons);
-        return persons;
+    countByState(state) {
+        let count = this.contacts.filter(contact => contact.state === state).length;
+        console.log(`Number of contacts in ${state}: ${count}`);
+        return count;
     }
 }
 
@@ -65,13 +65,15 @@ try {
     let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
     let contact2 = new Contact("Jane", "Smith", "456 Elm St", "NewCity", "NewState", "654321", "9123456789", "jane.smith@example.com");
     let contact3 = new Contact("Alice", "Brown", "789 Oak St", "Cityname", "AnotherState", "789456", "9012345678", "alice.brown@example.com");
+    let contact4 = new Contact("Bob", "White", "321 Pine St", "NewCity", "NewState", "123789", "9112233445", "bob.white@example.com");
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
     addressBook.addContact(contact3);
+    addressBook.addContact(contact4);
 } catch (error) {
     console.error(error.message);
 }
 
-addressBook.viewPersonsByCity("Cityname");
-addressBook.viewPersonsByState("NewState");
+addressBook.countByCity("Cityname");
+addressBook.countByState("NewState");
