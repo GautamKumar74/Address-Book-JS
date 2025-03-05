@@ -72,6 +72,14 @@ class AddressBook {
     countContacts() {
         return this.contacts.length;
     }
+
+    searchByCity(city) {
+        return this.contacts.filter(contact => contact.city === city);
+    }
+
+    searchByState(state) {
+        return this.contacts.filter(contact => contact.state === state);
+    }
 }
 
 // Test Cases
@@ -80,13 +88,14 @@ let addressBook = new AddressBook();
 try {
     let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
     let contact2 = new Contact("Jane", "Smith", "456 Elm St", "NewCity", "NewState", "654321", "9123456789", "jane.smith@example.com");
-    let contact3 = new Contact("John", "Doe", "789 Oak St", "AnotherCity", "AnotherState", "789456", "9012345678", "john.doe@another.com"); // Duplicate
+    let contact3 = new Contact("Alice", "Brown", "789 Oak St", "Cityname", "AnotherState", "789456", "9012345678", "alice.brown@example.com");
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
-    addressBook.addContact(contact3); // Should not be added
+    addressBook.addContact(contact3);
 } catch (error) {
     console.error(error.message);
 }
 
-console.log("Total Contacts:", addressBook.countContacts());
+console.log("Contacts in Cityname:", addressBook.searchByCity("Cityname"));
+console.log("Contacts in NewState:", addressBook.searchByState("NewState"));
