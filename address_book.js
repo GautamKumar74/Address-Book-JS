@@ -45,40 +45,16 @@ class AddressBook {
         console.log("Contact added:", contact);
     }
 
-    findContact(firstName, lastName) {
-        return this.contacts.find(contact => contact.firstName === firstName && contact.lastName === lastName);
+    viewPersonsByCity(city) {
+        let persons = this.contacts.filter(contact => contact.city === city).map(contact => `${contact.firstName} ${contact.lastName}`);
+        console.log(`Persons in ${city}:`, persons);
+        return persons;
     }
 
-    editContact(firstName, lastName, newDetails) {
-        let contact = this.findContact(firstName, lastName);
-        if (contact) {
-            Object.assign(contact, newDetails);
-            console.log("Contact updated:", contact);
-        } else {
-            console.log("Contact not found.");
-        }
-    }
-
-    deleteContact(firstName, lastName) {
-        let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
-        if (index !== -1) {
-            this.contacts.splice(index, 1);
-            console.log(`Deleted contact: ${firstName} ${lastName}`);
-        } else {
-            console.log("Contact not found.");
-        }
-    }
-
-    countContacts() {
-        return this.contacts.length;
-    }
-
-    searchByCity(city) {
-        return this.contacts.filter(contact => contact.city === city);
-    }
-
-    searchByState(state) {
-        return this.contacts.filter(contact => contact.state === state);
+    viewPersonsByState(state) {
+        let persons = this.contacts.filter(contact => contact.state === state).map(contact => `${contact.firstName} ${contact.lastName}`);
+        console.log(`Persons in ${state}:`, persons);
+        return persons;
     }
 }
 
@@ -97,5 +73,5 @@ try {
     console.error(error.message);
 }
 
-console.log("Contacts in Cityname:", addressBook.searchByCity("Cityname"));
-console.log("Contacts in NewState:", addressBook.searchByState("NewState"));
+addressBook.viewPersonsByCity("Cityname");
+addressBook.viewPersonsByState("NewState");
