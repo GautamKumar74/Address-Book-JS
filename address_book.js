@@ -49,6 +49,16 @@ class AddressBook {
             console.log("Contact not found.");
         }
     }
+
+    deleteContact(firstName, lastName) {
+        let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
+        if (index !== -1) {
+            this.contacts.splice(index, 1);
+            console.log(`Deleted contact: ${firstName} ${lastName}`);
+        } else {
+            console.log("Contact not found.");
+        }
+    }
 }
 
 // Test Cases
@@ -61,7 +71,7 @@ try {
     console.error(error.message);
 }
 
-console.log("Editing Contact...");
-addressBook.editContact("John", "Doe", { city: "NewCity", phoneNumber: "9998887776" });
+console.log("Deleting Contact...");
+addressBook.deleteContact("John", "Doe");
 
 console.log("All Contacts:", addressBook.contacts);
