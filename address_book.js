@@ -59,6 +59,10 @@ class AddressBook {
             console.log("Contact not found.");
         }
     }
+
+    countContacts() {
+        return this.contacts.length;
+    }
 }
 
 // Test Cases
@@ -66,12 +70,11 @@ let addressBook = new AddressBook();
 
 try {
     let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
+    let contact2 = new Contact("Jane", "Smith", "456 Elm St", "NewCity", "NewState", "654321", "9123456789", "jane.smith@example.com");
     addressBook.addContact(contact1);
+    addressBook.addContact(contact2);
 } catch (error) {
     console.error(error.message);
 }
 
-console.log("Deleting Contact...");
-addressBook.deleteContact("John", "Doe");
-
-console.log("All Contacts:", addressBook.contacts);
+console.log("Total Contacts:", addressBook.countContacts());
