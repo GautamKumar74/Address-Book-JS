@@ -49,14 +49,21 @@ class AddressBook {
         console.log("Contact added:", contact.toString());
     }
 
-    sortByName() {
-        this.contacts.sort((a, b) => {
-            let nameA = a.firstName.toLowerCase() + " " + a.lastName.toLowerCase();
-            let nameB = b.firstName.toLowerCase() + " " + b.lastName.toLowerCase();
-            return nameA.localeCompare(nameB);
-        });
+    sortByCity() {
+        this.contacts.sort((a, b) => a.city.localeCompare(b.city));
+        console.log("\nSorted Contacts by City:");
+        this.contacts.forEach(contact => console.log(contact.toString()));
+    }
 
-        console.log("\nSorted Contacts by Name:");
+    sortByState() {
+        this.contacts.sort((a, b) => a.state.localeCompare(b.state));
+        console.log("\nSorted Contacts by State:");
+        this.contacts.forEach(contact => console.log(contact.toString()));
+    }
+
+    sortByZip() {
+        this.contacts.sort((a, b) => a.zip.localeCompare(b.zip));
+        console.log("\nSorted Contacts by Zip:");
         this.contacts.forEach(contact => console.log(contact.toString()));
     }
 }
@@ -65,10 +72,10 @@ class AddressBook {
 let addressBook = new AddressBook();
 
 try {
-    let contact1 = new Contact("John", "Doe", "123 Main St", "Cityname", "Statename", "123456", "9876543210", "john.doe@example.com");
-    let contact2 = new Contact("Jane", "Smith", "456 Elm St", "NewCity", "NewState", "654321", "9123456789", "jane.smith@example.com");
-    let contact3 = new Contact("Alice", "Brown", "789 Oak St", "Cityname", "AnotherState", "789456", "9012345678", "alice.brown@example.com");
-    let contact4 = new Contact("Bob", "White", "321 Pine St", "NewCity", "NewState", "123789", "9112233445", "bob.white@example.com");
+    let contact1 = new Contact("John", "Doe", "123 Main St", "CityA", "StateX", "123456", "9876543210", "john.doe@example.com");
+    let contact2 = new Contact("Jane", "Smith", "456 Elm St", "CityB", "StateY", "654321", "9123456789", "jane.smith@example.com");
+    let contact3 = new Contact("Alice", "Brown", "789 Oak St", "CityA", "StateZ", "789456", "9012345678", "alice.brown@example.com");
+    let contact4 = new Contact("Bob", "White", "321 Pine St", "CityC", "StateX", "123789", "9112233445", "bob.white@example.com");
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
@@ -78,4 +85,6 @@ try {
     console.error(error.message);
 }
 
-addressBook.sortByName();
+addressBook.sortByCity();
+addressBook.sortByState();
+addressBook.sortByZip();
