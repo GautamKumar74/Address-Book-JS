@@ -24,6 +24,10 @@ class Contact {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
+    toString() {
+        return `Name: ${this.firstName} ${this.lastName}, Address: ${this.address}, City: ${this.city}, State: ${this.state}, Zip: ${this.zip}, Phone: ${this.phoneNumber}, Email: ${this.email}`;
+    }
 }
 
 class AddressBook {
@@ -42,19 +46,18 @@ class AddressBook {
         }
 
         this.contacts.push(contact);
-        console.log("Contact added:", contact);
+        console.log("Contact added:", contact.toString());
     }
 
-    countByCity(city) {
-        let count = this.contacts.filter(contact => contact.city === city).length;
-        console.log(`Number of contacts in ${city}: ${count}`);
-        return count;
-    }
+    sortByName() {
+        this.contacts.sort((a, b) => {
+            let nameA = a.firstName.toLowerCase() + " " + a.lastName.toLowerCase();
+            let nameB = b.firstName.toLowerCase() + " " + b.lastName.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
 
-    countByState(state) {
-        let count = this.contacts.filter(contact => contact.state === state).length;
-        console.log(`Number of contacts in ${state}: ${count}`);
-        return count;
+        console.log("\nSorted Contacts by Name:");
+        this.contacts.forEach(contact => console.log(contact.toString()));
     }
 }
 
@@ -75,5 +78,4 @@ try {
     console.error(error.message);
 }
 
-addressBook.countByCity("Cityname");
-addressBook.countByState("NewState");
+addressBook.sortByName();
